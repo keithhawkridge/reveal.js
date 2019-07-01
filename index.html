@@ -49,7 +49,7 @@
             <div class="right-col">
                 <ul>
                     <li class="fragment">No Integration Tests</li>
-                    <li class="fragment">50 + endpoints x 4+ Versions = ??? endpoints</li>
+                    <li class="fragment">50+ endpoints x 4+ Versions = ??? endpoints</li>
                     <li class="fragment">Regression will be inevitable</li>
                     <li class="fragment">No confidence -> Add Contract tests</li>
                 </ul>
@@ -73,16 +73,51 @@
 
         <section>
             <h4>Client API Contract Testing</h4>
-            <img data-src="./images/contract3.jpeg" width="40%">
+            <div class="left-col">
+                <img data-src="./images/contract3.jpeg" height="500px">
+            </div>
+            <div class="right-col">
+                <ul>
+                    <li class="fragment">Start production like embedded client-api</li>
+                    <li class="fragment">Start embedded wiremock dependent services</li>
+                    <li class="fragment">Run as part of gradle default unit 'test' task</li>
+                    <li class="fragment">about 10 'latest' contract tests</li>
+                    <li class="fragment">about 10 previous version 2019-04-01 contract tests</li>
+                    <li class="fragment">about 20 seconds to run</li>
+                </ul>
+            </div>
         </section>
 
+        <section>
+            <h4>Contract Test Structure</h4>
+            <ul>
+                <li class="fragment">Kotlin Tests - client-api/src/test/kotlin</li>
+                <li class="fragment"><pre><code data-trim data-noescape>`com.airwallex.client.api.e2e.versioning.latest`</code></pre></li>
+                <li class="fragment"><pre><code data-trim data-noescape>`com.airwallex.client.api.e2e.versioning.v2019_04_01`</code></pre></li>
+
+                <li class="fragment">JSON contract files - client-api/src/test/resources</li>
+                <li class="fragment"><pre><code data-trim data-noescape>`com.airwallex.client.api.e2e.versioning.latest`</code></pre></li>
+                <li class="fragment"><pre><code data-trim data-noescape>`com.airwallex.client.api.e2e.versioning.v2019_04_01`</code></pre></li>
+
+                <li class="fragment">Test Base Constructor - Configure runtime account service</li>
+                <li class="fragment"><pre><code data-trim data-noescape>class E2EConversionTest : BaseE2EApiTest(LATEST_VERSION) {</code></pre></li>
+                <li class="fragment"><pre><code data-trim data-noescape>class E2EQuoteTest : BaseE2EApiTest(v2019_04_01) {</code></pre></li>
+            </ul>
+        </section>
 
         <section>
             Code Demo
         </section>
 
         <section>
-            Maintaining Contract Tests
+            <h4>Moving Forward</h4>
+            <ul>
+                <li class="fragment">Maintaining Contract Tests & JSON</li>
+                <li class="fragment">Long-lived embedded servers between test classes</li>
+                <li class="fragment">Vertx & Dropwizard support embedded servers for testing</li>
+                <li class="fragment">REST, Kafka, Rabbitmq messages are all 'API's'</li>
+                <li class="fragment">Deprecating web-app-api ??</li>
+            </ul>
         </section>
 
     </div>
