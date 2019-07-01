@@ -1,49 +1,107 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+    <title>reveal.js</title>
 
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/theme/league.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/monokai.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>Client API Contract Testing</section>
 
-		<script src="js/reveal.js"></script>
+        <section>
+            <h4>Client API Overview</h4>
+            <ul>
+                <li class="fragment">50+ API endpoints</li>
+                <li class="fragment">Four Versions - Latest 2019-05-21 includes LockFx</li>
+                <li class="fragment">Client on-boarded with one version - never forced to upgrade</li>
+                <li class="fragment">Apply non breaking changes to 'latest' / 'all' versions</li>
+                <li class="fragment">Add new version to allow backwards incompatible changes</li>
+                <li class="fragment">All clients on 'old' versions - bau</li>
+                <li class="fragment">Should webapp be a 'versioned' client??</li>
+            </ul>
+        </section>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true }
-				]
-			});
-		</script>
-	</body>
+        <section>
+            <h4>Adding 2019-05-21 LockFx</h4>
+            <div class="left-col">
+                <img data-src="./images/contract1.png" height="300px">
+            </div>
+            <div class="right-col">
+                <ul>
+                    <li class="fragment">No Integration Tests</li>
+                    <li class="fragment">50 + endpoints x 4+ Versions = ??? endpoints</li>
+                    <li class="fragment">Regression will be inevitable</li>
+                    <li class="fragment">No confidence -> Add Contract tests</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h4>Client API Single Request</h4>
+            <div class="left-col">
+                <img data-src="./images/contract2.png" height="500px">
+            </div>
+            <div class="right-col">
+                <ul>
+                    <li class="fragment">REST Controller is 'latest' version</li>
+                    <li class="fragment">Versioning filter applies delta</li>
+                    <li class="fragment">Versioning filter uses JSON node API</li>
+                    <li class="fragment">Versioning filter - :thumbsup</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h4>Client API Contract Testing</h4>
+            <img data-src="./images/contract3.jpeg" width="40%">
+        </section>
+
+
+        <section>
+            Code Demo
+        </section>
+
+        <section>
+            Maintaining Contract Tests
+        </section>
+
+    </div>
+</div>
+
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {src: 'plugin/highlight/highlight.js', async: true}
+        ]
+    });
+</script>
+</body>
 </html>
