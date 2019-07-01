@@ -34,15 +34,15 @@
                 <li class="fragment">50+ API endpoints</li>
                 <li class="fragment">Four Versions - Latest 2019-05-21 includes LockFx</li>
                 <li class="fragment">Client on-boarded with one version - never forced to upgrade</li>
-                <li class="fragment">Apply non breaking changes to 'latest' / 'all' versions</li>
+                <li class="fragment">Apply non breaking changes to 'latest' (all) versions</li>
                 <li class="fragment">Add new version to allow backwards incompatible changes</li>
                 <li class="fragment">All clients on 'old' versions - bau</li>
-                <li class="fragment">Should webapp be a 'versioned' client??</li>
+                <li class="fragment">Should webapp be a 'versioned' client-api user??</li>
             </ul>
         </section>
 
         <section>
-            <h4>Adding 2019-05-21 LockFx</h4>
+            <h4>Adding 2019-05-21 LockFx Version</h4>
             <div class="left-col">
                 <img data-src="./images/contract1.png" height="300px">
             </div>
@@ -67,6 +67,7 @@
                     <li class="fragment">Versioning filter applies delta</li>
                     <li class="fragment">Versioning filter uses JSON node API</li>
                     <li class="fragment">Versioning filter - :thumbsup</li>
+                    <li class="fragment">Can still unit test each component</li>
                 </ul>
             </div>
         </section>
@@ -80,6 +81,8 @@
                 <ul>
                     <li class="fragment">Start production like embedded client-api</li>
                     <li class="fragment">Start embedded wiremock dependent services</li>
+                    <li class="fragment">Send real json request / Assert real json response</li>
+                    <li class="fragment">Wiremock provides outbound req/resp verification & assertion</li>
                     <li class="fragment">Run as part of gradle default unit 'test' task</li>
                     <li class="fragment">about 10 'latest' contract tests</li>
                     <li class="fragment">about 10 previous version 2019-04-01 contract tests</li>
@@ -92,27 +95,42 @@
             <h4>Contract Test Structure</h4>
             <ul>
                 <li class="fragment">Kotlin Tests - client-api/src/test/kotlin</li>
-                <li class="fragment"><pre><code data-trim data-noescape>`com.airwallex.client.api.e2e.versioning.latest`</code></pre></li>
-                <li class="fragment"><pre><code data-trim data-noescape>`com.airwallex.client.api.e2e.versioning.v2019_04_01`</code></pre></li>
+                <li class="fragment">
+                    <pre><code data-trim data-noescape>`com.airwallex.client.api.e2e.versioning.latest`</code></pre>
+                </li>
+                <li class="fragment">
+                    <pre><code data-trim
+                               data-noescape>`com.airwallex.client.api.e2e.versioning.v2019_04_01`</code></pre>
+                </li>
 
                 <li class="fragment">JSON contract files - client-api/src/test/resources</li>
-                <li class="fragment"><pre><code data-trim data-noescape>`com.airwallex.client.api.e2e.versioning.latest`</code></pre></li>
-                <li class="fragment"><pre><code data-trim data-noescape>`com.airwallex.client.api.e2e.versioning.v2019_04_01`</code></pre></li>
+                <li class="fragment">
+                    <pre><code data-trim data-noescape>`com.airwallex.client.api.e2e.versioning.latest`</code></pre>
+                </li>
+                <li class="fragment">
+                    <pre><code data-trim
+                               data-noescape>`com.airwallex.client.api.e2e.versioning.v2019_04_01`</code></pre>
+                </li>
 
                 <li class="fragment">Test Base Constructor - Configure runtime account service</li>
-                <li class="fragment"><pre><code data-trim data-noescape>class E2EConversionTest : BaseE2EApiTest(LATEST_VERSION) {</code></pre></li>
-                <li class="fragment"><pre><code data-trim data-noescape>class E2EQuoteTest : BaseE2EApiTest(v2019_04_01) {</code></pre></li>
+                <li class="fragment">
+                    <pre><code data-trim data-noescape>class E2EConversionTest : BaseE2EApiTest(LATEST_VERSION) {</code></pre>
+                </li>
+                <li class="fragment">
+                    <pre><code data-trim data-noescape>class E2EQuoteTest : BaseE2EApiTest(v2019_04_01) {</code></pre>
+                </li>
             </ul>
         </section>
 
         <section>
-            Code Demo
+            <h4>Code Demo</h4>
         </section>
 
         <section>
             <h4>Moving Forward</h4>
             <ul>
-                <li class="fragment">Maintaining Contract Tests & JSON</li>
+                <li class="fragment">Maintaining Contract Tests & JSON files</li>
+                <li class="fragment">Long Lived 'old' JSON files -> ok</li>
                 <li class="fragment">Long-lived embedded servers between test classes</li>
                 <li class="fragment">Vertx & Dropwizard support embedded servers for testing</li>
                 <li class="fragment">REST, Kafka, Rabbitmq messages are all 'API's'</li>
